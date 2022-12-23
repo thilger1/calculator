@@ -14,7 +14,6 @@ body {
 }
 
 .row {
-    gap: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,4 +24,12 @@ button {
     height: 100px;
     width: 100px;
     font-size: 30px;
+}
+
+#answer {
+    color: white;
+    font-size: 100px;
+    display: flex;
+    margin-bottom: 0;
+    margin-left: 80%;
 }
