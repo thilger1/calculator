@@ -1,17 +1,16 @@
 const num = document.querySelectorAll('.number');
 const op = document.querySelectorAll('.operator');
-const answer = document.getElementById('answer');
+const showAnswer = document.getElementById('answer');
 const clear = document.getElementById('clearButton');
 let valOne = null;
 let valTwo = null;
 let storedOp = null;
 let fullVal = null;
+let result = null;
 
 clear.addEventListener('click', () => {
-    valOne = null;
-    valTwo = null;
-    storedOp = null;
-    answer.innerHTML = "";
+    reset();
+    showAnswer.innerHTML = "";
 });
 
 num.forEach((button) => {
@@ -28,23 +27,36 @@ num.forEach((button) => {
         //val One (before operator)
         } else {
             if (valOne == null){
+                result == null;
                 valOne = newVal;
             } else {
                 valOne = valOne.concat(newVal);
             }
-            answer.innerHTML = valOne;
+            showAnswer.innerHTML = valOne;
         }
     });
 });
 
 op.forEach((button) => {
     button.addEventListener('click', function(e){
+        if (result != null) {
+            valOne = result;
+            result = null;
+            storedOp = button.value;
+            return;
+        }
         if (valTwo != null){
             equation(valOne, valTwo, storedOp);
+            storedOp = button.value;
+            return;
+        }
+        if (valOne == null && result == null){
+            return;
         }
         else {
             storedOp = button.value;
-            answer.innerHTML = storedOp;
+            showAnswer.innerHTML = storedOp;
+            return;
         }
     });
 });
@@ -52,28 +64,30 @@ op.forEach((button) => {
 function equation(passOne, passTwo, passOp) {
     switch (passOp) {
         case '+':
-            console.log(storedOp);
-            console.log(valOne);
-            console.log(valTwo);
-            valOne = Number(passOne) + Number(passTwo);
-            console.log(valOne);
-            valTwo = null;
-            answer.innerHTML = valOne;
+            result = Number(passOne) + Number(passTwo);
+            reset();
+            showAnswer.innerHTML = result;
             break;
         case '-':
-            valOne = valOne - valTwo;
-            valTwo = null;
-            answer.innerHTML = valOne;
+            result = Number(valOne) - Number(valTwo);
+            reset();
+            showAnswer.innerHTML = result;
             break;
         case '/':
-            valOne = valOne / valTwo;
-            valTwo = null;
-            answer.innerHTML = valOne;
+            result = Number(valOne) / Number(valTwo);
+            reset();
+            showAnswer.innerHTML = result;
             break;
         case '*':
-            valOne = valOne * valTwo;
-            valTwo = null;
-            answer.innerHTML = valOne;
+            result = Number(valOne) * Number(valTwo);
+            reset();
+            showAnswer.innerHTML = valOne;
             break;
     }
 };
+
+function reset(){
+    valOne = null
+    valTwo = null;
+    storedOp = null;
+}
