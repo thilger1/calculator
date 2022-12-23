@@ -17,6 +17,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 button {
@@ -24,6 +25,39 @@ button {
     height: 100px;
     width: 100px;
     font-size: 30px;
+}
+
+.light-gray {
+    background-color:darkgray;
+    color: black;
+}
+
+.light-gray:active {
+    background-color: white;
+}
+
+.dark-gray {
+    background-color:dimgray;
+    color: white;
+}
+
+.dark-gray:active {
+    background-color: grey;
+}
+
+.orange {
+    background-color: orange;
+    color: white;
+}
+
+.orange:active {
+    background-color: white;
+    color: orange;
+}
+
+#zero {
+    width: 200px;
+    border-radius: 30%;
 }
 
 #answer {
