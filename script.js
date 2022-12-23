@@ -40,7 +40,7 @@ num.forEach((button) => {
 op.forEach((button) => {
     button.addEventListener('click', function(e){
         if (valTwo != null){
-            answer.innerHTML = equation(valOne, valTwo, storedOp);
+            equation(valOne, valTwo, storedOp);
         }
         else {
             storedOp = button.value;
@@ -49,10 +49,14 @@ op.forEach((button) => {
     });
 });
 
-function equation(valOne, valTwo, storedOp) {
-    switch (storedOp) {
+function equation(passOne, passTwo, passOp) {
+    switch (passOp) {
         case '+':
-            valOne = valOne + valTwo;
+            console.log(storedOp);
+            console.log(valOne);
+            console.log(valTwo);
+            valOne = Number(passOne) + Number(passTwo);
+            console.log(valOne);
             valTwo = null;
             answer.innerHTML = valOne;
             break;
