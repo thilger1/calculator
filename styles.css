@@ -2,17 +2,26 @@ body {
     background-color: black;
 }
 
+.calc-body{
+    display: flex;
+    position: absolute;
+    margin-bottom: 100px;
+    bottom: 0;
+    left: 0;
+}
+
 .row {
     display:flex;
     margin:auto;
     gap: 10px;
     justify-content: center;
-    width: 400px;
+    width: 600px;
 
 }
 
 button {
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 90px;
+    width: 90px;
+    font-size: 30px;
 }
