@@ -18,6 +18,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin-bottom: 10px;
 }
 
 button {
@@ -57,7 +58,7 @@ button {
 
 #zero {
     width: 200px;
-    border-radius: 30%;
+    border-radius: 45%;
 }
 
 #answer {
