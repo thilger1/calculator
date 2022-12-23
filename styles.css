@@ -1,3 +1,18 @@
 body {
-    background-color: gray;
+    background-color: black;
+}
+
+.row {
+    display:flex;
+    margin:auto;
+    gap: 10px;
+    justify-content: center;
+    width: 400px;
+
+}
+
+button {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
 }
