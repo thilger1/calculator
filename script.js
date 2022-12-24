@@ -29,10 +29,15 @@ equals.addEventListener('click', () => {
 num.forEach((button) => {
     button.addEventListener('click', function(e){
         if (numOne == null){
+            result = null;
             numOne = button.value;
+            showAnswer.innerHTML = numOne;
+            return;
         }
         if (numOne != null && storedOp == null){
             numOne = numOne.concat(button.value);
+            showAnswer.innerHTML = numOne;
+            return;
         }
         //if no numOne , = numOne
             //if no numOne, numOne
@@ -42,9 +47,12 @@ num.forEach((button) => {
                 //if numTwo, numTwo = numTwo.concat(button.value);
         if (numOne != null && storedOp != null){
             numTwo = button.value;
+            showAnswer.innerHTML = numTwo;
+            return;
         }
         if (numTwo != null){
             numTwo = numTwo.concat(button.value);
+            showAnswer.innerHTML = numTwo;
         }
     });
 });
@@ -53,11 +61,13 @@ op.forEach((button) => {
     button.addEventListener('click', function(e){
         if (numOne != null && storedOp == null && numTwo == null){
             storedOp = button.value;
+            showAnswer.innerHTML = storedOp;
         };
         if (result != null){
             numOne = result;
             result = null;
             storedOp = button.value;
+            showAnswer.innerHTML = storedOp;
         };
         if (numOne != null && storedOp != null && numTwo != null){
             result = equation(numOne, numTwo, storedOp);
