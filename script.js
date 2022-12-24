@@ -5,6 +5,7 @@ const showAnswer = document.getElementById('answer');
 const clear = document.getElementById('clearButton');
 const point = document.getElementById('point');
 const neg = document.getElementById('negative');
+const percent = document.getElementById('percent');
 let numOne = null;
 let numTwo = null;
 let storedOp = null;
@@ -15,6 +16,22 @@ let pointTwo = false;
 clear.addEventListener('click', () => {
     reset();
     showAnswer.innerHTML = "";
+});
+
+percent.addEventListener('click', () => {
+    if (numOne != null && storedOp == null && numTwo == null){
+        numOne.replace('.','');
+        numOne = '0.'.concat(numOne);
+        showAnswer.innerHTML = numOne;
+        return;
+    }
+    if (numOne != null && numTwo != null && result == null){
+        numTwo.replace('.', '');
+        numTwo = '0.'.concat(numTwo);
+        showAnswer.innerHTML = numTwo;
+        return;
+    }
+    return;
 });
 
 neg.addEventListener('click', () => {
