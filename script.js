@@ -59,7 +59,7 @@ num.forEach((button) => {
 
 op.forEach((button) => {
     button.addEventListener('click', function(e){
-        if (numOne != null && storedOp == null && numTwo == null){
+        if (numOne != null && numTwo == null){
             storedOp = button.value;
             showAnswer.innerHTML = storedOp;
         };
