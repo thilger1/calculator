@@ -1,11 +1,11 @@
 const num = document.querySelectorAll('.number');
 const op = document.querySelectorAll('.operator');
+const equals = document.getElementById('equals');
 const showAnswer = document.getElementById('answer');
 const clear = document.getElementById('clearButton');
-let valOne = null;
-let valTwo = null;
+let numOne = null;
+let numTwo = null;
 let storedOp = null;
-let fullVal = null;
 let result = null;
 
 clear.addEventListener('click', () => {
@@ -13,81 +13,82 @@ clear.addEventListener('click', () => {
     showAnswer.innerHTML = "";
 });
 
+equals.addEventListener('click', () => {
+    if (numOne != null && storedOp != null && numTwo != null){
+        result = equation(numOne, numTwo, storedOp);
+    }
+    if (numOne != null && storedOp == null){
+        result = numOne;
+    }
+    showAnswer.innerHTML = result;
+    numOne = null;
+    numTwo = null;
+    storedOp = null;
+});
+
 num.forEach((button) => {
     button.addEventListener('click', function(e){
-        newVal = button.value;
-        //val Two (after operator)
-        if (valOne != null && storedOp != null){
-            if (valTwo == null){
-                valTwo = newVal;
-            } else {
-                valTwo = valTwo.concat(newVal);
-            }
-            answer.innerHTML = valTwo;
-        //val One (before operator)
-        } else {
-            if (valOne == null){
-                result == null;
-                valOne = newVal;
-            } else {
-                valOne = valOne.concat(newVal);
-            }
-            showAnswer.innerHTML = valOne;
+        if (numOne == null){
+            numOne = button.value;
+        }
+        if (numOne != null && storedOp == null){
+            numOne = numOne.concat(button.value);
+        }
+        //if no numOne , = numOne
+            //if no numOne, numOne
+                //if numOne, numOne = numOne.concat(button.value);
+        //if numOne and storedOp, numTwo
+            //if no numTwo, numTwo
+                //if numTwo, numTwo = numTwo.concat(button.value);
+        if (numOne != null && storedOp != null){
+            numTwo = button.value;
+        }
+        if (numTwo != null){
+            numTwo = numTwo.concat(button.value);
         }
     });
 });
 
 op.forEach((button) => {
     button.addEventListener('click', function(e){
-        if (result != null) {
-            valOne = result;
+        if (numOne != null && storedOp == null && numTwo == null){
+            storedOp = button.value;
+        };
+        if (result != null){
+            numOne = result;
             result = null;
             storedOp = button.value;
-            return;
-        }
-        if (valTwo != null){
-            equation(valOne, valTwo, storedOp);
+        };
+        if (numOne != null && storedOp != null && numTwo != null){
+            result = equation(numOne, numTwo, storedOp);
+            showAnswer.innerHTML = result;
             storedOp = button.value;
-            return;
-        }
-        if (valOne == null && result == null){
-            return;
-        }
-        else {
-            storedOp = button.value;
-            showAnswer.innerHTML = storedOp;
-            return;
-        }
+            numOne = null;
+            numTwo = null;
+        };
+
     });
 });
 
-function equation(passOne, passTwo, passOp) {
-    switch (passOp) {
+function equation(one, two, operator){
+    switch(operator){
         case '+':
-            result = Number(passOne) + Number(passTwo);
-            reset();
-            showAnswer.innerHTML = result;
-            break;
+            return (Number(one) + Number(two));
+        
         case '-':
-            result = Number(valOne) - Number(valTwo);
-            reset();
-            showAnswer.innerHTML = result;
-            break;
-        case '/':
-            result = Number(valOne) / Number(valTwo);
-            reset();
-            showAnswer.innerHTML = result;
-            break;
+            return (Number(one) - Number(two));
+        
         case '*':
-            result = Number(valOne) * Number(valTwo);
-            reset();
-            showAnswer.innerHTML = valOne;
-            break;
-    }
+            return (Number(one) * Number(two));
+        
+        case '/':
+            return (Number(one) / Number(two));
+        };
 };
-
+        
 function reset(){
-    valOne = null
-    valTwo = null;
+    numOne = null;
+    numTwo = null;
     storedOp = null;
+    result = null;
 }
