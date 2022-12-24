@@ -4,6 +4,7 @@ const equals = document.getElementById('equals');
 const showAnswer = document.getElementById('answer');
 const clear = document.getElementById('clearButton');
 const point = document.getElementById('point');
+const neg = document.getElementById('negative');
 let numOne = null;
 let numTwo = null;
 let storedOp = null;
@@ -14,6 +15,19 @@ let pointTwo = false;
 clear.addEventListener('click', () => {
     reset();
     showAnswer.innerHTML = "";
+});
+
+neg.addEventListener('click', () => {
+    if (numOne != null && storedOp == null){
+        numOne = -(numOne);
+        showAnswer.innerHTML = numOne;
+        return;
+    }
+    if (numOne != null && storedOp != null && numTwo != null && result == null){
+        numTwo = -(numTwo);
+        showAnswer.innerHTML = numTwo;
+        return;
+    }
 });
 
 point.addEventListener('click', () => {
