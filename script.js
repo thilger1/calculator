@@ -54,7 +54,7 @@ equals.addEventListener('click', () => {
     if (numOne != null && storedOp == null){
         result = numOne;
     }
-    showAnswer.innerHTML = result;
+    showAnswer.innerHTML = Math.round(result * 10000) / 10000;
     numOne = null;
     pointOne = false;
     numTwo = null;
