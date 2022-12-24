@@ -3,14 +3,48 @@ const op = document.querySelectorAll('.operator');
 const equals = document.getElementById('equals');
 const showAnswer = document.getElementById('answer');
 const clear = document.getElementById('clearButton');
+const point = document.getElementById('point');
 let numOne = null;
 let numTwo = null;
 let storedOp = null;
 let result = null;
+let pointOne = false;
+let pointTwo = false;
 
 clear.addEventListener('click', () => {
     reset();
     showAnswer.innerHTML = "";
+});
+
+point.addEventListener('click', () => {
+    if (numOne == null){
+        numOne = point.value;
+        pointOne = true;
+        showAnswer.innerHTML = numOne;
+        return;
+    }
+    if (numOne != null && storedOp == null){
+        if (pointOne == false){
+            numOne = numOne.concat(point.value);
+            showAnswer.innerHTML = numOne;
+            return;
+        }
+    }
+    if (numTwo == null){
+        numTwo = point.value;
+        pointTwo = true;
+        showAnswer.innerHTML = numTwo;
+        return;
+    }
+    if (numTwo != null && result == null){
+        if (pointTwo == false){
+            numTwo = numTwo.concat(point.value);
+            pointTwo.true;
+            showAnswer.innerHTML = numTwo;
+            return;
+        };
+    };
+    return;
 });
 
 equals.addEventListener('click', () => {
@@ -22,7 +56,9 @@ equals.addEventListener('click', () => {
     }
     showAnswer.innerHTML = result;
     numOne = null;
+    pointOne = false;
     numTwo = null;
+    pointTwo = false;
     storedOp = null;
 });
 
@@ -45,7 +81,7 @@ num.forEach((button) => {
         //if numOne and storedOp, numTwo
             //if no numTwo, numTwo
                 //if numTwo, numTwo = numTwo.concat(button.value);
-        if (numOne != null && storedOp != null){
+        if (numOne != null && storedOp != null && numTwo == null){
             numTwo = button.value;
             showAnswer.innerHTML = numTwo;
             return;
@@ -53,6 +89,7 @@ num.forEach((button) => {
         if (numTwo != null){
             numTwo = numTwo.concat(button.value);
             showAnswer.innerHTML = numTwo;
+            return;
         }
     });
 });
@@ -74,7 +111,9 @@ op.forEach((button) => {
             showAnswer.innerHTML = result;
             storedOp = button.value;
             numOne = null;
+            pointOne = false;
             numTwo = null;
+            pointTwo = false;
         };
 
     });
@@ -98,7 +137,9 @@ function equation(one, two, operator){
         
 function reset(){
     numOne = null;
+    pointOne = false;
     numTwo = null;
+    pointTwo = false;
     storedOp = null;
     result = null;
 }
