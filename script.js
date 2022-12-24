@@ -26,11 +26,12 @@ point.addEventListener('click', () => {
     if (numOne != null && storedOp == null){
         if (pointOne == false){
             numOne = numOne.concat(point.value);
+            pointOne = true;
             showAnswer.innerHTML = numOne;
             return;
         }
     }
-    if (numTwo == null){
+    if (numOne != null && storedOp != null && numTwo == null){
         numTwo = point.value;
         pointTwo = true;
         showAnswer.innerHTML = numTwo;
@@ -39,7 +40,7 @@ point.addEventListener('click', () => {
     if (numTwo != null && result == null){
         if (pointTwo == false){
             numTwo = numTwo.concat(point.value);
-            pointTwo.true;
+            pointTwo = true;
             showAnswer.innerHTML = numTwo;
             return;
         };
