@@ -19,12 +19,12 @@ clear.addEventListener('click', () => {
 
 neg.addEventListener('click', () => {
     if (numOne != null && storedOp == null){
-        numOne = -(numOne);
+        numOne = String(-(numOne));
         showAnswer.innerHTML = numOne;
         return;
     }
     if (numOne != null && storedOp != null && numTwo != null && result == null){
-        numTwo = -(numTwo);
+        numTwo = String(-(numTwo));
         showAnswer.innerHTML = numTwo;
         return;
     }
