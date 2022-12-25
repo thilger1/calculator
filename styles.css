@@ -64,7 +64,15 @@ button {
 #answer {
     color: white;
     font-size: 100px;
-    display: flex;
+    display: inline-block;
     margin-bottom: 0;
-    margin-left: 80%;
+    text-align: right;
+}
+
+#answer-row {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    gap: 10px;
+    margin-bottom: 10px;
 }

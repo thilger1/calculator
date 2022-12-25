@@ -20,13 +20,13 @@ clear.addEventListener('click', () => {
 
 percent.addEventListener('click', () => {
     if (numOne != null && storedOp == null && numTwo == null){
-        numOne.replace('.','');
+        numOne = String(numOne).replace('.','');
         numOne = '0.'.concat(numOne);
         showAnswer.innerHTML = numOne;
         return;
     }
     if (numOne != null && numTwo != null && result == null){
-        numTwo.replace('.', '');
+        numTwo = String(numTwo).replace('.', '');
         numTwo = '0.'.concat(numTwo);
         showAnswer.innerHTML = numTwo;
         return;
