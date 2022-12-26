@@ -6,6 +6,7 @@ const clear = document.getElementById('clearButton');
 const point = document.getElementById('point');
 const neg = document.getElementById('negative');
 const percent = document.getElementById('percent');
+
 let numOne = null;
 let numTwo = null;
 let storedOp = null;
@@ -103,9 +104,11 @@ num.forEach((button) => {
             return;
         }
         if (numOne != null && storedOp == null){
-            numOne = numOne.concat(button.value);
-            showAnswer.innerHTML = numOne;
-            return;
+            if (numOne.length < 9){
+                numOne = numOne.concat(button.value);
+                showAnswer.innerHTML = numOne;
+                return;
+            }
         }
         //if no numOne , = numOne
             //if no numOne, numOne
@@ -114,9 +117,11 @@ num.forEach((button) => {
             //if no numTwo, numTwo
                 //if numTwo, numTwo = numTwo.concat(button.value);
         if (numOne != null && storedOp != null && numTwo == null){
-            numTwo = button.value;
-            showAnswer.innerHTML = numTwo;
-            return;
+            if (numTwo.length < 9){
+                numTwo = button.value;
+                showAnswer.innerHTML = numTwo;
+                return;
+            }
         }
         if (numTwo != null){
             numTwo = numTwo.concat(button.value);
