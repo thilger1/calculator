@@ -52,7 +52,7 @@ point.addEventListener('click', () => {
     if (numOne == null){
         numOne = point.value;
         pointOne = true;
-        showAnswer.innerHTML = numOne;
+        showAnswer.innerHTML = cleanAnswer(numOne);
         return;
     }
     if (numOne != null && storedOp == null){
@@ -106,7 +106,7 @@ num.forEach((button) => {
         if (numOne != null && storedOp == null){
             if (numOne.length < 9){
                 numOne = numOne.concat(button.value);
-                showAnswer.innerHTML = numOne;
+                showAnswer.innerHTML = Number(numOne).toLocaleString('en-US');
                 return;
             }
         }
@@ -117,16 +117,16 @@ num.forEach((button) => {
             //if no numTwo, numTwo
                 //if numTwo, numTwo = numTwo.concat(button.value);
         if (numOne != null && storedOp != null && numTwo == null){
-            if (numTwo.length < 9){
                 numTwo = button.value;
                 showAnswer.innerHTML = numTwo;
                 return;
             }
-        }
         if (numTwo != null){
-            numTwo = numTwo.concat(button.value);
-            showAnswer.innerHTML = numTwo;
-            return;
+            if (numTwo < 9){
+                numTwo = numTwo.concat(button.value);
+                showAnswer.innerHTML = numTwo;
+                return;
+            }
         }
     });
 });
@@ -179,4 +179,8 @@ function reset(){
     pointTwo = false;
     storedOp = null;
     result = null;
+}
+
+function cleanAnswer(numToClean){
+    numToClean = Number(numToClean);
 }
