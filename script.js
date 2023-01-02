@@ -87,12 +87,15 @@ equals.addEventListener('click', () => {
     if (numOne != null && storedOp == null){
         result = numOne;
     }
-    showAnswer.innerHTML = Math.round(result * 10000) / 10000;
+    let roundedResult = Math.round(result * 10000) / 10000;
+    //showAnswer.innerHTML = 'moo';
+    showAnswer.innerHTML = cleanAnswer(roundedResult);
     numOne = null;
     pointOne = false;
     numTwo = null;
     pointTwo = false;
     storedOp = null;
+    removeSelected();
 });
 
 num.forEach((button) => {
@@ -134,20 +137,23 @@ num.forEach((button) => {
 op.forEach((button) => {
     button.addEventListener('click', function(e){
         if (numOne != null && numTwo == null){
+            removeSelected();
             storedOp = button.value;
-            showAnswer.innerHTML = storedOp;
+            removeSelected();
+            button.classList.add('selected');
         };
         if (result != null){
             numOne = result;
             result = null;
             storedOp = button.value;
-            showAnswer.innerHTML = storedOp;
+            removeSelected();
+            button.classList.add('selected');
         };
         if (numOne != null && storedOp != null && numTwo != null){
             result = equation(numOne, numTwo, storedOp);
-            showAnswer.innerHTML = result;
+            showAnswer.innerHTML = cleanAnswer(result);
             storedOp = button.value;
-            numOne = null;
+            numOne = result;
             pointOne = false;
             numTwo = null;
             pointTwo = false;
@@ -173,6 +179,7 @@ function equation(one, two, operator){
 };
         
 function reset(){
+    removeSelected();
     numOne = null;
     pointOne = false;
     numTwo = null;
@@ -182,5 +189,21 @@ function reset(){
 }
 
 function cleanAnswer(numToClean){
-    numToClean = Number(numToClean);
+    let stringNum = String(numToClean);
+    if (stringNum.length > 20){
+        return "Error";
+    }
+    if (stringNum.length > 9){
+        
+        let afterE = (stringNum.length - 6);
+        let cleanedNum = `${stringNum.slice(0)}.${stringNum.slice(1,5)}e${stringNum.slice(6,afterE)}`;
+        return cleanedNum;
+    }
+    return Number(numToClean).toLocaleString('en-US');
 }
+
+function removeSelected(){
+    op.forEach((button) => {
+        button.classList.remove('selected');
+    });
+};
