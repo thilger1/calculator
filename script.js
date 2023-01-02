@@ -50,9 +50,10 @@ neg.addEventListener('click', () => {
 
 point.addEventListener('click', () => {
     if (numOne == null){
-        numOne = "0.";
+        numOne = '0';
+        numOne = numOne.concat(point.value);
         pointOne = true;
-        showAnswer.innerHTML = cleanAnswer(numOne);
+        showAnswer.innerHTML = numOne;
         return;
     }
     if (numOne != null && storedOp == null){
@@ -64,7 +65,8 @@ point.addEventListener('click', () => {
         }
     }
     if (numOne != null && storedOp != null && numTwo == null){
-        numTwo = point.value;
+        numTwo = '0';
+        numTwo = numTwo.concat(point.value);
         pointTwo = true;
         showAnswer.innerHTML = numTwo;
         return;
@@ -137,7 +139,6 @@ num.forEach((button) => {
 op.forEach((button) => {
     button.addEventListener('click', function(e){
         if (numOne != null && numTwo == null){
-            removeSelected();
             storedOp = button.value;
             removeSelected();
             button.classList.add('selected');
@@ -152,6 +153,8 @@ op.forEach((button) => {
         if (numOne != null && storedOp != null && numTwo != null){
             result = equation(numOne, numTwo, storedOp);
             showAnswer.innerHTML = cleanAnswer(result);
+            removeSelected();
+            button.classList.add('selected');
             storedOp = button.value;
             numOne = result;
             pointOne = false;
