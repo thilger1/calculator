@@ -50,7 +50,7 @@ neg.addEventListener('click', () => {
 
 point.addEventListener('click', () => {
     if (numOne == null){
-        numOne = point.value;
+        numOne = "0.";
         pointOne = true;
         showAnswer.innerHTML = cleanAnswer(numOne);
         return;
