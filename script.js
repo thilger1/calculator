@@ -122,9 +122,9 @@ num.forEach((button) => {
                 return;
             }
         if (numTwo != null){
-            if (numTwo < 9){
+            if (numTwo.length < 9){
                 numTwo = numTwo.concat(button.value);
-                showAnswer.innerHTML = numTwo;
+                showAnswer.innerHTML = Number(numTwo).toLocaleString('en-US');
                 return;
             }
         }
