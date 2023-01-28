@@ -61,41 +61,61 @@ class Calculator {
         this.previousOperand = '';
     }
 
+    signChange() {
+        if (this.currentOperand == null)
+            return;
+        else
+            this.currentOperand = this.currentOperand * (-1);
+    }
+
     updateDisplay() {
         this.currentOperandTextElement.innerText = this.currentOperand;
         this.previousOperandTextElement.innerText = this.previousOperand;
     }
 }
 
-const numbers = document.querySelectorAll('[data-number');
-const operators = document.querySelectorAll('[data-operation');
-const equals = document.querySelector('[data-equals');
-const clear = document.querySelector('[data-clear');
+const numberButtons = document.querySelectorAll('[data-number');
+const operatorButtons = document.querySelectorAll('[data-operation');
+const equalButton = document.querySelector('[data-equals');
+const clearButton = document.querySelector('[data-clear');
+const signButton = document.querySelector('[data-sign-change]');
+const percentButton = document.querySelector('[data-percent]');
 const currentOperandTextElement = document.querySelector('[data-current-operand');
 const previousOperandTextElement = document.querySelector('[data-previous-operand');
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
 
-numbers.forEach(button => {
+numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText)
         calculator.updateDisplay()
     })
 });
 
-operators.forEach(button => {
+operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.chooseOperation(button.innerText)
         calculator.updateDisplay()
     })
 });
 
-equals.addEventListener('click', button => {
-    calculator.compute()
-    calculator.updateDisplay()
+equalButton.addEventListener('click', button => {
+    calculator.compute();
+    calculator.updateDisplay();
 })
 
-clear.addEventListener('click', button => {
+signButton.addEventListener('click', button => {
+    calculator.signChange();
+    calculator.updateDisplay();
+})
+
+percentButton.addEventListener('click', button => {
+    calculator.signChange();
+    calculator.updateDisplay();
+})
+
+
+clearButton.addEventListener('click', button => {
     calculator.clear()
     calculator.updateDisplay()
 })
