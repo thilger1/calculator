@@ -1,54 +1,57 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif, sans-serif;
+    font-weight: normal;
+}
+
+body{
+    padding: 0;
+    margin: 0;
     background-color: black;
 }
 
-.calc-body{
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 40px;
+.calc {
+    display: grid;
     justify-content: center;
-    align-items: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
-.row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+.calc button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid black;
+    outline: none;
+    margin: 7px;
 }
 
-button {
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    font-size: 30px;
-}
-
-.light-gray {
-    background-color:darkgray;
-    color: black;
-}
-
-.light-gray:active {
-    background-color: white;
-}
-
-.dark-gray {
-    background-color:dimgray;
+.dark {
+    background-color: rgb(62, 62, 62);
     color: white;
+    border-radius: 50%;
 }
 
-.dark-gray:active {
-    background-color: grey;
+.dark:active {
+    background-color: rgb(179, 179, 179);
+}
+
+.light {
+    background-color: rgb(161, 161, 161);
+    color: black;
+    border-radius: 50%;
+}
+
+.light:active{
+    background-color: rgb(206, 205, 205);
+    color: black;
 }
 
 .orange {
     background-color: orange;
     color: white;
+    border-radius: 50%;
 }
 
 .orange:active {
@@ -56,28 +59,36 @@ button {
     color: orange;
 }
 
-.selected {
-    background-color: white;
-    color: orange;
-}
-
-#zero {
-    width: 200px;
-    border-radius: 45%;
-}
-
-#answer {
+.span-two {
+    grid-column: span 2;
+    background-color: rgb(62, 62, 62);
     color: white;
-    font-size: 100px;
-    display: inline-block;
-    margin-bottom: 0;
-    text-align: right;
+    border-radius: 55px;
+    padding-right: 50%;
+
 }
 
-#answer-row {
+.span-two:active {
+    background-color: rgb(179, 179, 179);
+}
+
+.output {
+    grid-column: 1 / -1;
     display: flex;
-    justify-content: right;
-    align-items: right;
-    gap: 10px;
-    margin-bottom: 10px;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 2px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.output .previous-operand {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.5rem;
+}
+
+.output .current-operand {
+    color: white;
+    font-size: 4rem;
 }

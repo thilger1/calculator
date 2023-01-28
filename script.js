@@ -1,212 +1,46 @@
-const num = document.querySelectorAll('.number');
-const op = document.querySelectorAll('.operator');
-const equals = document.getElementById('equals');
-const showAnswer = document.getElementById('answer');
-const clear = document.getElementById('clearButton');
-const point = document.getElementById('point');
-const neg = document.getElementById('negative');
-const percent = document.getElementById('percent');
-
-let numOne = null;
-let numTwo = null;
-let storedOp = null;
-let result = null;
-let pointOne = false;
-let pointTwo = false;
-
-clear.addEventListener('click', () => {
-    reset();
-    showAnswer.innerHTML = "";
-});
-
-percent.addEventListener('click', () => {
-    if (numOne != null && storedOp == null && numTwo == null){
-        numOne = String(numOne).replace('.','');
-        numOne = '0.'.concat(numOne);
-        showAnswer.innerHTML = numOne;
-        return;
+class Calculator {
+    constructor(previousOp, currentOp){
+        this.previousOp = previousOp;
+        this.currentOp = currentOp;
     }
-    if (numOne != null && numTwo != null && result == null){
-        numTwo = String(numTwo).replace('.', '');
-        numTwo = '0.'.concat(numTwo);
-        showAnswer.innerHTML = numTwo;
-        return;
-    }
-    return;
-});
 
-neg.addEventListener('click', () => {
-    if (numOne != null && storedOp == null){
-        numOne = String(-(numOne));
-        showAnswer.innerHTML = numOne;
-        return;
+    clear(){
+        this.currentOp = '';
+        this.previousOp = '';
+        this.operation = undefined;
     }
-    if (numOne != null && storedOp != null && numTwo != null && result == null){
-        numTwo = String(-(numTwo));
-        showAnswer.innerHTML = numTwo;
-        return;
-    }
-});
 
-point.addEventListener('click', () => {
-    if (numOne == null){
-        numOne = '0';
-        numOne = numOne.concat(point.value);
-        pointOne = true;
-        showAnswer.innerHTML = numOne;
-        return;
-    }
-    if (numOne != null && storedOp == null){
-        if (pointOne == false){
-            numOne = numOne.concat(point.value);
-            pointOne = true;
-            showAnswer.innerHTML = numOne;
-            return;
-        }
-    }
-    if (numOne != null && storedOp != null && numTwo == null){
-        numTwo = '0';
-        numTwo = numTwo.concat(point.value);
-        pointTwo = true;
-        showAnswer.innerHTML = numTwo;
-        return;
-    }
-    if (numTwo != null && result == null){
-        if (pointTwo == false){
-            numTwo = numTwo.concat(point.value);
-            pointTwo = true;
-            showAnswer.innerHTML = numTwo;
-            return;
-        };
-    };
-    return;
-});
+    appendNumber(number){
 
-equals.addEventListener('click', () => {
-    if (numOne != null && storedOp != null && numTwo != null){
-        result = equation(numOne, numTwo, storedOp);
     }
-    if (numOne != null && storedOp == null){
-        result = numOne;
+
+    chooseOperation(operation){
+
     }
-    let roundedResult = Math.round(result * 10000) / 10000;
-    //showAnswer.innerHTML = 'moo';
-    showAnswer.innerHTML = cleanAnswer(roundedResult);
-    numOne = null;
-    pointOne = false;
-    numTwo = null;
-    pointTwo = false;
-    storedOp = null;
-    removeSelected();
-});
 
-num.forEach((button) => {
-    button.addEventListener('click', function(e){
-        if (numOne == null){
-            result = null;
-            numOne = button.value;
-            showAnswer.innerHTML = numOne;
-            return;
-        }
-        if (numOne != null && storedOp == null){
-            if (numOne.length < 9){
-                numOne = numOne.concat(button.value);
-                showAnswer.innerHTML = Number(numOne).toLocaleString('en-US');
-                return;
-            }
-        }
-        //if no numOne , = numOne
-            //if no numOne, numOne
-                //if numOne, numOne = numOne.concat(button.value);
-        //if numOne and storedOp, numTwo
-            //if no numTwo, numTwo
-                //if numTwo, numTwo = numTwo.concat(button.value);
-        if (numOne != null && storedOp != null && numTwo == null){
-                numTwo = button.value;
-                showAnswer.innerHTML = numTwo;
-                return;
-            }
-        if (numTwo != null){
-            if (numTwo.length < 9){
-                numTwo = numTwo.concat(button.value);
-                showAnswer.innerHTML = Number(numTwo).toLocaleString('en-US');
-                return;
-            }
-        }
-    });
-});
+    compute() {
 
-op.forEach((button) => {
-    button.addEventListener('click', function(e){
-        if (numOne != null && numTwo == null){
-            storedOp = button.value;
-            removeSelected();
-            button.classList.add('selected');
-        };
-        if (result != null){
-            numOne = result;
-            result = null;
-            storedOp = button.value;
-            removeSelected();
-            button.classList.add('selected');
-        };
-        if (numOne != null && storedOp != null && numTwo != null){
-            result = equation(numOne, numTwo, storedOp);
-            showAnswer.innerHTML = cleanAnswer(result);
-            removeSelected();
-            button.classList.add('selected');
-            storedOp = button.value;
-            numOne = result;
-            pointOne = false;
-            numTwo = null;
-            pointTwo = false;
-        };
+    }
 
-    });
-});
+    updateDisplay() {
 
-function equation(one, two, operator){
-    switch(operator){
-        case '+':
-            return (Number(one) + Number(two));
-        
-        case '-':
-            return (Number(one) - Number(two));
-        
-        case '*':
-            return (Number(one) * Number(two));
-        
-        case '/':
-            return (Number(one) / Number(two));
-        };
-};
-        
-function reset(){
-    removeSelected();
-    numOne = null;
-    pointOne = false;
-    numTwo = null;
-    pointTwo = false;
-    storedOp = null;
-    result = null;
+    }
 }
 
-function cleanAnswer(numToClean){
-    let stringNum = String(numToClean);
-    if (stringNum.length > 20){
-        return "Error";
-    }
-    if (stringNum.length > 9){
-        
-        let afterE = (stringNum.length - 6);
-        let cleanedNum = `${stringNum.slice(0)}.${stringNum.slice(1,5)}e${stringNum.slice(6,afterE)}`;
-        return cleanedNum;
-    }
-    return Number(numToClean).toLocaleString('en-US');
-}
 
-function removeSelected(){
-    op.forEach((button) => {
-        button.classList.remove('selected');
-    });
-};
+
+const numbers = document.querySelectorAll('[data-number');
+const operators = document.querySelectorAll('[data-operation');
+const equals = document.querySelector('[data-equals');
+const clear = document.querySelector('[data-clear');
+const currentOp = document.querySelector('[data-current-operand');
+const previousOp = document.querySelector('[data-previous-operand');
+
+const calculator = new Calculator(previousOp, currentOp)
+
+numbers.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.appendNumber(button.innerText);
+        calculator.updateDisplay()
+    })
+})

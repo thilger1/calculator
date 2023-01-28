@@ -1,49 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-
-  <body>
-    <div class="calc-body">
-        <div class="row" id="answer-row">
-            <p id="answer"></p>
+    <link href = "styles.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="calc">
+        <div class="output">
+            <div data-previous-operand class="previous-operand"></div>
+            <div data-previous-operand class="current-operand"></div>
         </div>
-        <span class="buttons">
-        <div class="row">
-            <button id='clearButton' class="light-gray">AC</button>
-            <button id="negative" class="light-gray">+/-</button>
-            <button id="percent" class="light-gray">%</button>
-            <button id="divide" value="/" class="operator orange">÷</button>
-        </div>
-        <div class="row">
-            <button id="seven" value=7 class="dark-gray number">7</button>
-            <button id="eight" value=8 class="dark-gray number">8</button>
-            <button id="nine" value=9 class="dark-gray number">9</button>
-            <button id="multiply" value="*" class="operator orange">X</button>
-        </div>
-        <div class="row">
-            <button id="four" value="4" class="dark-gray number">4</button>
-            <button id="five" value="5" class="dark-gray number">5</button>
-            <button id="six" value="6" class="dark-gray number">6</button>
-            <button id="subtract" value="-" class="operator orange">-</button>
-        </div>
-        <div class="row">
-            <button id="one" value="1" class="dark-gray number">1</button>
-            <button id="two" value="2" class="dark-gray number">2</button>
-            <button id="three" value="3" class="dark-gray number">3</button>
-            <button id="add" value="+" class="operator orange">+</button>
-        </div>
-        <div class="row">
-            <button id="zero" value="0" class="dark-gray">0</button>
-            <button id="point" value="." class="dark-gray">.</button>
-            <button id="equals" class="orange">=</button>
-        </div>
-        </span>
+        <button data-clear class="light">AC</button>
+        <button data-operation class="light">-/+</button>
+        <button data-operation class="light">%</button>
+        <button data-operation class="orange" style="font-size:50px;">÷</button>
+        <button data-number class="dark">7</button>
+        <button data-number class="dark">8</button>
+        <button data-number class="dark">9</button>
+        <button data-operation class="orange">X</button>
+        <button data-number class="dark">4</button>
+        <button data-number class="dark">5</button>
+        <button data-number class="dark">6</button>
+        <button class="orange" style="font-size:50px;">-</button>
+        <button data-number class="dark">1</button>
+        <button data-number class="dark">2</button>
+        <button data-number class="dark">3</button>
+        <button class="orange">+</button>
+        <button data-number class="span-two" class="dark">0</button>
+        <button data-number class="dark">.</button>
+        <button data-equals class="orange">=</button>
     </div>
-
-  </body>
-  <script src="script.js"></script>
+</body>
 </html>
