@@ -68,9 +68,38 @@ class Calculator {
             this.currentOperand = this.currentOperand * (-1);
     }
 
+    percent() {
+        if (this.currentOperand == null)
+            return;
+        else
+            this.currentOperand = this.currentOperand / 100;
+    }
+
+    getDisplayNumber(number){
+        const stringNumber = number.toString()
+        const integerDigits = parseFloat(stringNumber.split('.')[0])
+        const decimalDigits = stringNumber.split('.')[1]
+        let integerDisplay;
+        if (isNaN(integerDigits)) {
+            integerDisplay = ''
+        } else {
+            integerDisplay = integerDigits.toLocaleString('en', {
+                maximumFractionDigits: 0 })
+            }
+            if (decimalDigits != null) {
+                return `${integerDisplay}.${decimalDigits}`
+            }
+            else {
+                return integerDisplay;
+            }
+        }
+
     updateDisplay() {
-        this.currentOperandTextElement.innerText = this.currentOperand;
-        this.previousOperandTextElement.innerText = this.previousOperand;
+        this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+        if (this.previousOperand == null)
+            return;
+        else
+            this.previousOperandTextElement.innerText = this.getDisplayNumber(this.previousOperand);
     }
 }
 
@@ -110,10 +139,9 @@ signButton.addEventListener('click', button => {
 })
 
 percentButton.addEventListener('click', button => {
-    calculator.signChange();
+    calculator.percent();
     calculator.updateDisplay();
 })
-
 
 clearButton.addEventListener('click', button => {
     calculator.clear()
