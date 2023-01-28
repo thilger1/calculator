@@ -90,5 +90,6 @@ body{
 
 .output .current-operand {
     color: white;
-    font-size: 4rem;
+    font-size: 5rem;
+    padding-right: 10px;
 }
